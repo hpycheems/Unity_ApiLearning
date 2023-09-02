@@ -16,6 +16,7 @@ public class ApplicationExample : MonoBehaviour
         Debug.Log(Application.streamingAssetsPath);
         Debug.Log(Application.temporaryCachePath);
 
+        //让游戏以指定帧数去运行
         Application.targetFrameRate = 60;
     }
 
