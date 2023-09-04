@@ -194,3 +194,47 @@ SendMessageUpwards() 向GameObject自身及其所有父级发送消息
 
 CreatePrimitive() 创建具有基元网格渲染器和适当碰撞体的游戏对象
 
+
+
+## HideFlags类
+
+HideFlags类为枚举类，用于控制Object对象的销毁方式及其在检视面板中道德可视性。
+
+DontSave：保留对象到心场景
+
+```
+此属性的功能是用来设置是否将Object对象保留到新的场景中，如果使用HideFlags.DontSave,则Object对象将在新场景中被存储下来
+```
+
+- 如果GameObject对象被HideFlags.DontSave标识，则在新Scene中GameObject的所有组件将被保留下来，但其子类GameObject对象不会被保留到新Scene中。
+- 不可以对GameObject对象的某个组件如Transform进行HideFlags.DontSave标识，否则无效
+- 即使程序已经退出，被HideFlags.DontSave标识的对象也会一直存在与程序中，造成内存泄漏，对HideFlags.DontSave标识的对象，在不需要或程序退出时需要使用DestoryImmediate手动销毁。
+
+
+
+HideAndDontSave：保留对象到新场景
+
+用来设置是否将Object对象保留到新Scene中，如果使用HideFlags.HideAndDontSave，则Object对象将在新Scene中被保留下来，但不会显示在Hierarchy面板中。
+
+
+
+HideInHierarchy:在Hierarchy面板中隐藏
+
+设置Object对象在Hierarchy面板中是否隐藏。
+
+- 若要在Hierarchy面板中隐藏不是在脚本中创建的对象，需要在Awake方法中使用HideFlags.HideInHierarchy才能生效。
+- 若隐藏父物体，子物体也会被隐藏掉，但隐藏子物体，父物体不会被影响。
+
+
+
+HideInInspector：在Inspector面板中隐藏
+
+- 如果一个GameObject使用了HideFlags.HideInInspector，则其所有组件将在Inspector面板中被隐藏，但其子类带对象的组件仍可在Inspector面板中显示。
+- 如果只隐藏了GameObject对象的某个组件，如Transfrom，则并不影响GameObject的其他组件在Inspector面板中的显示状态。
+
+
+
+None：HideFlags默认值
+
+不改变Object对象的可见性。
+
