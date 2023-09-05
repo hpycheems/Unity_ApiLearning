@@ -238,3 +238,104 @@ None：HideFlags默认值
 
 不改变Object对象的可见性。
 
+## Mathf类
+
+### 静态字段
+
+Deg2Rad 度到弧度换算常量（只读）
+
+其值为（2 * Mathf.PI） / 360 = 0.01745329
+
+Infinity 正无穷大的表示形式（只读）
+
+### 静态方法
+
+Abs 返回f的绝对值
+
+Clamp方法：在给定的最小浮点值和最大浮点值之间钳制给定值。如果在最小和最大范围内，则返回给定值
+
+Clamp01：将值限制在 0 与 1 之间并返回值。
+
+ClosetPowerOfTwo 返回最接近的 2 的幂值。
+
+
+
+DeltaAngle方法：最小增量角度
+
+float DeltaAngle（float current， float target）
+
+其中参数current为当前角度，参数target为目标角度![image-20230905093752670](Imag\image-20230905093752670.png)
+
+
+
+InverseLerp方法：计算比例值
+
+float InverseLerp（float from，float to， float value）；
+
+from为起始值，参数to为终点值，参数value为参考值
+
+用来返回value值在从参数from到to中的比例值。
+
+
+
+Lerp方法：线性插值
+
+float Lerp（float from， float to， float t）；
+
+参数from为线性插值的起始值，参数to为线性插值的结束值，参数t为插值系数
+
+用来返回一个从from到to范围的线性插值
+
+
+
+LerpAngle方法：角度插值
+
+float LerpAngle（float a ， float b， float t）
+
+参数a为起始角度，参数b为结束角度，参数t为插值系数
+
+用来返回从角度a到角度b之间的一个插值。
+
+
+
+MoveToWorlds方法：选择性插值
+
+float MoveToWorlds（float current， float target， float maxDelta）
+
+参数current为当前值，参数target为目标值，参数maxDelta为最大约束值。
+
+返回一个从current到target之间的插值，返回值受maxDelta值得约束
+
+
+
+MoveToWorldsAngle方法：角度得选择性插值
+
+
+
+PingPong方法：往复运动
+
+float PingPong（float t, float lenght）；
+
+
+
+Repeat方法：取模运算
+
+float Repeat（float t，float length）；
+
+对值 t 进行循环，使它不会大于长度，并且不会小于 0。
+
+
+
+Round方法：浮点数得整型值
+
+float Round（float f）
+
+
+
+SmoothDamp方法：模拟阻尼运动
+
+
+
+SmoothDampAngle 随时间推移将以度为单位给定的角度逐渐改变为所需目标角度。
+
+SmoothStep 在 min 与 max 之间进行插值，在限制处进行平滑。
