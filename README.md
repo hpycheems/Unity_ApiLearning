@@ -339,3 +339,68 @@ SmoothDamp方法：模拟阻尼运动
 SmoothDampAngle 随时间推移将以度为单位给定的角度逐渐改变为所需目标角度。
 
 SmoothStep 在 min 与 max 之间进行插值，在限制处进行平滑。
+
+
+
+
+
+## Object类
+
+Object类是Unity中所有对象的基类
+
+### 实例方法
+
+GetInstancelD方法：Object对象ID
+
+public int GetInstaancelD();
+
+返回Object对象的实例化ID
+
+- 每个Object都有一个唯一的ID（int类型）。并且从程序开始运行到结束，除非对象被销毁，否则每个实例对应的ID都不会改变。
+- 从GameObject.CreatePrimitive()或Object.Instantiate()中创建出来的对象都有唯一ID
+
+### 静态方法
+
+Destroy 方法:销毁对象
+
+public static void Destroy(Object obj);
+
+public static void Destroy(Object obj, float t);
+
+其中参数obj为待销毁的对象，参数t为销毁延迟时间，默认为0
+
+功能：在执行完本方法t秒后销毁obj对象
+
+```
+近似的方法有DestroyImmediate和DestroyObject。方法DestroyImmediate可以立即销毁某个Object对象及其在Assets中的资源文件。
+```
+
+
+
+DontDestroyOnLoad方法：新场景中保留对象
+
+public static void DontDestroyOnLoad(Object target);
+
+参数target为被保留的对象
+
+
+
+FindObjectOfType方法:获取对象
+
+public static T[] FindObjectOfType<T>() where T : Object;
+
+public static Object[] FindObjectOfType(Type type);
+
+参数target为要获取的对象类型，可以是GameObject类型或Component类型。
+
+
+
+
+
+Instantiate方法:实例化对象
+
+public static Object Instantiate(Object original);
+
+public static Object Instantiate(Object original, Vector3 position, Quaternion rotation);
+
+参数original为实例化对象的类型，参数position为实例化对象的位置，参数rotation为实例化对象的旋转角度。
