@@ -404,3 +404,107 @@ public static Object Instantiate(Object original);
 public static Object Instantiate(Object original, Vector3 position, Quaternion rotation);
 
 参数original为实例化对象的类型，参数position为实例化对象的位置，参数rotation为实例化对象的旋转角度。
+
+
+
+## Quaternion类
+
+### 实例属性
+
+eulerAngles 属性：欧拉角
+
+Vector3 eulerAngles {get ；set；}
+
+用来返回或设置Quaternion实例对应的欧拉角
+
+- 对GameObject对象的Transform进行欧拉角的变换次序是，先绕z轴旋转相应的角度，再绕x轴旋转相应的角度，最后再绕y轴旋转相应的角度。不同的旋转次序得到的最终态是不同的。
+- 对GameObject对象的旋转进行赋值的方式通常有两种：将Quaternion实例赋值给transfrom的rotation，将三维向量代表的欧拉角直接赋值给transform的eulerAngles
+
+### 实例方法
+
+SetFromToRotation方法：创建rotation实例
+
+void SetFromToRotation（Vector3 fromDirection， Vector3 toDirection）；
+
+用于创建一个从fromDirection到toDirection的rotation。
+
+
+
+SetLockRotation 方法：设置Quaternion实例的朝向
+
+public void SetLookRotation(Vector3 view);
+
+public void SetLookRotation(Vector3 view, vector3 Up);
+
+Quaternion q1 = Quaternion.identity
+
+q1.SetLookRotation(v1,v2);
+
+transfrom.rotation = q1;
+
+- transform.forward方向与v1方向相同
+- transform.right 垂直于由Vector3.zero、v1和v2这3个点构成的平面
+- v2除了与Vector3.zero和v1构成平面来决定transform.right的方向外，还用来决定transform.up的朝向，
+
+
+
+ToAngleAxis 方法：Quaternion实例的角轴表示
+
+public void ToAngleAxis（out float angle， out vector3 axis）
+
+参数angle为旋转角，参数axis为轴向量
+
+
+
+### 静态方法
+
+Angle方法：Quaternion实例间夹角
+
+public static float Angle(Quaternion a, Quaternion b);
+
+返回从参数a到参数b变换的夹角。
+
+
+
+Dot方法：点乘
+
+public static float Dot（Quaternion a，Quaternion b）；
+
+
+
+
+
+Euler方法：欧拉角对应的四元数
+
+public static Quaternion Euler(Vector3 euler);
+
+public static Quaternion Euler(float x,float y,float z);
+
+
+
+FromToRotation 方法：创建一个从 fromDirection 旋转到 toDirection 的旋转。
+
+
+
+Inverse方法：返回 rotation 的反转。
+
+
+
+Lerp方法：线性插值
+
+public static Quaternion Lerp（Quaternion from，Quaternion to，float t）
+
+
+
+LookRotation方法：设置Quaternion的朝向
+
+public static Quaternion LookRotation（Vector3 forward）
+
+public static Quaternion LookRotation（Vector3 forward， Vector3 upwards）
+
+
+
+Slerp方法：球面插值
+
+public static Quaternion Slerp（Quaternion from，Quaternion to，float t）；
+
