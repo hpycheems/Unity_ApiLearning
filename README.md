@@ -508,3 +508,36 @@ Slerp方法：球面插值
 
 public static Quaternion Slerp（Quaternion from，Quaternion to，float t）；
 
+
+
+## Random类
+
+### 静态属性
+
+insideUnitCircle 属性：圆内随机点
+
+返回一个半径为1的圆内的随机点坐标，返回值为Vector2类型
+
+
+
+insideUnitSphere属性：返回一个半径为1的求内的随机点坐标，返回值为Vector3类型
+
+onUnitSphere属性：返回一个半径为1的球面的随机点，返回值为Vecotr3类型
+
+
+
+rotationUniform属性：均匀分布（随机数出现的概率是相等的）特征
+
+返回一个随机其符合均匀分布特征的rotation值。
+
+rotation属性只是产生一个随机的rotation值，不符合均匀分布特征
+
+
+
+seed属性：随机数种子
+
+用来设置随机数的种子，在计算机中产生随机数的方法有很多，但每种方法都需要一个种子。
+
+
+
+value 返回介于 0.0 [含] 与 1.0 [含] 之间的随机数（只读）
