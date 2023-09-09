@@ -541,3 +541,172 @@ seed属性：随机数种子
 
 
 value 返回介于 0.0 [含] 与 1.0 [含] 之间的随机数（只读）
+
+
+
+## RigidBody
+
+### 实例属性
+
+collisionDetectionMode属性：碰撞检测模式
+
+用于设置刚体的碰撞检测模式
+
+- Discrete：静态离散检查模式，为系统的默认设置。
+- Continuous：静态连续检测模式，一般用在高速运动刚体的目标碰撞体上，防止被穿越，检测强度比Discrete强
+- ContinuousDynamic：最强的连续动态检测模式
+
+
+
+drag 属性：刚体阻力
+
+用于给刚体添加一个阻力，drag值越大刚体速度减慢得越快。当drag>0时，刚体在增加到一定速度后会匀速运动。
+
+```
+刚体在自由落体运动中的最大速度值只与Gravity和drag值有关，与质量Mass无关。
+```
+
+
+
+
+
+inertiaTensor属性：惯性张量
+
+用于设置刚体的惯性张量。在距离重心同等的条件下，刚体会向张量值大的一边倾斜。
+
+
+
+mass属性：刚体质量
+
+用于设置或返回刚体的质量。一般刚体质量取值在0.1附近模拟最佳，最大不要超过10，否则容易出现出模拟不稳定的情况。
+
+- 对于自由落体运动，物体的速度只与重力加速度Gravity和空气阻力drag有关，与质量mass无关。
+- mass的主要作用是在物体发生碰撞时计算碰撞后物体的速度。当一个物体分别去撞击mass大的物体和mass小的物体时，根据动量守恒定律，较重的物体被碰撞后的速度要慢于较轻的物体。
+
+
+
+
+
+velocity属性：刚体速度
+
+用于设置或返回刚体的速度值
+
+- 在脚本中无论是给刚体赋予一个Verctor3类型的速度向量v，还是获取当前刚体速度v，v的方向都是相对世界坐标而言的。
+- velocity的单位是米每秒，而不是帧每秒，其中米是Unity默认的长度单位。
+
+
+
+### 实例方法
+
+AddExplosionForce方法：模拟爆炸力
+
+public void AddExplosionForce（float explosionForce， Vector3 explosionPosition， float explosionRadius）
+
+public void AddExplosionForce（float explosionForce， Vector3 explosionPosition， float explosionRadius， float upwardsModifier）
+
+public void AddExplosionForce（float explosionForce， Vector3 explosionPosition， float explosionRadius， float upwardsModifier， ForceMode mode）
+
+参数explosionForce为爆炸点施加的力的大小，参数explosionPosition为爆炸点坐标（相对世界坐标），参数explosionRadius为爆炸作用力有效半径，参数upwardsModifier为爆炸力作用点在y轴方向上的偏移，参数mode为爆炸力的作用模式，默认为ForceMode .Force
+
+
+
+AddForceAtPosition方法：增加刚体点作用力
+
+public void AddForceAtPosition(Vector3 force, Vector3 position);
+
+public void AddForceAtPosition(Vector3 force, Vector3 position, ForceMode mode);
+
+参数force为扭矩向量，参数position为作用点坐标值，参数mode为力的作用方式
+
+用于为参数position点增加一个力force，其参考坐标为世界坐标
+
+
+
+AddTorque方法：刚体添加扭矩
+
+public void AddTorque（Vector3 torque）；
+
+public void AddTorque（Vector3 torque，ForceMode mode）；
+
+public void AddTorque（float x, float y, float z）；
+
+public void AddTorque（float x, float y, float z, ForceMode mode）；
+
+参数torque为扭矩向量，参数mode为力的作用方式
+
+
+
+ClosestPointOnBounds方法：爆炸点到刚体最短距离
+
+public Vector3 ColosestPointOnBounds（Vector3 position）；
+
+参数position为爆炸点坐标
+
+用于求爆炸点到刚体Collider表面的作用点。
+
+
+
+GetPointVelocity方法：刚体点速度
+
+参数worldPoint为世界坐标系中的点坐标
+
+用于获取世界坐标系中worldPoint点在刚体坐标系中的速度。
+
+
+
+GetRelativePointVelocity方法：刚体点相对速度
+
+public void GetRelativePointVelocity（Vector3 relativePoint）
+
+参数relativePoint为刚体自身坐标系中的点坐标
+
+
+
+MovePosition方法：刚体位置移动
+
+public void MovePosition（Vector3 position）；
+
+参数position为刚体组件要移动到的位置坐标
+
+
+
+Sleep方法：刚体休眠
+
+使刚体进入休眠状态，至少休眠一帧
+
+
+
+SweepTest方法：检测碰撞器
+
+public bool SweepTest（Vector3 direction， out RaycastHit hitInfo）；
+
+public bool SweepTest（Vector3 direction， out RaycastHit hitInfo，float distance）；
+
+direction为探测方向，参数distance为有效检测距离，默认为无穷大。
+
+用于检测在刚体的direction方向是否有碰撞器对象，且对象有效探测距离不大于distance。
+
+
+
+SweepTestAll方法：检测碰撞器，返回所有的碰撞器
+
+
+
+WakeUp方法：唤醒刚体
+
+用于将休从眠状态唤醒
+
+
+
+### 一些属性
+
+- useGravity属性用来确定刚体是否接收重力加速度的感应
+- isKinematic属性用来确定刚体是否接受动力模拟
+
+
+
+###  OnTriggerXXX 、OnCollisionXXX
+
+OnTriggerEnter、Exit 、Stay
+
+OnCollisionEnter、Exit、Stay
