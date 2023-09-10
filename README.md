@@ -710,3 +710,37 @@ WakeUp方法：唤醒刚体
 OnTriggerEnter、Exit 、Stay
 
 OnCollisionEnter、Exit、Stay
+
+
+
+## Time类
+
+### 静态属性
+
+realtimeSinceStartup属性：程序运行实时时间
+
+返回从游戏启动到现在已经运行的实时时间。
+
+
+
+smoothDeltaTime 属性：平滑时间间隔
+
+用于返回Time.deltaTime的平滑输出值
+
+
+
+time属性：程序运行时间
+
+返回从游戏启动到现在的运行时间
+
+### 其他属性介绍
+
+- captureFramerate属性：用于设置或返回帧速率的值
+
+- dealtaTime属性：用于返回从上一帧到现在所经历的时间
+- fixedDeltaTime属性：返回以固定帧率跟新时，相邻两帧的时间间隔
+- fixedTime属性：返回从游戏启动到现在以固定帧率更新的时间
+- framCount属性：返回从游戏启动到现在已经更新的帧率总数
+- maximumDeltaTime属性：设置或返回每帧更新可以消耗的最大时间
+- timeScale属性：用于控制时间的流逝速度，默认为1
+- timeSinceLevelLoad属性：用于返回从最后关卡加载完成到现在所经历的时间
