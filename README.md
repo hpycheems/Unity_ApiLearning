@@ -747,3 +747,214 @@ time属性：程序运行时间
 - timeScale属性：用于控制时间的流逝速度，默认为1
 - timeSinceLevelLoad属性：用于返回从最后关卡加载完成到现在所经历的时间
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
+
+
+## Transform类
+
+Transform实现了IEnumerable接口，可以在程序中使用foreach方法快速遍历子物体的Transform结构
+
+### 实例属性
+
+eulerAngles属性：欧拉角
+
+返回或设置GameObject对象的欧拉角
+
+- Unity中使用四元数来存储和表示GameObject的旋转角度，无论是在Inspector面板中对Rotation设置了怎么样的数值，还是在脚本中对transform.eulerAngles赋予了怎么样的值，程序在编译运行时都会把它们转换成Quaternion类型再计算。
+- 只能对transform.eulerAngles进行整体赋值
+- transform.eulerAngles.x返回值的范围为[0，90]和[270 360];y和z返回值的范围为[0,360]
+- 相对世界坐标
+- 旋转顺序zxy
+
+
+
+
+
+forward属性：z轴单位向量
+
+用于返回或设置transform自身坐标系中z轴方向的单位向量对应的世界坐标系中的单位向量。transform.forward即为transform.TransformDirection(new Vector3(0,0,1))的简化方式
+
+
+
+hasChanged属性：transform组件是否被修改
+
+判断GameObject对象从上次将此属性设为false依赖，transform组件的属性是否被修改过。
+
+
+
+localPosition属性：局部坐标系位置
+
+用于设置或返回GameObject对象在局部坐标系中的位置，若无父级对象则和属性Transform.position返回值相同。transform.localPosition的值受父级对象lossyScale的影响，当transform.localPosition的值增加1时，transform.position值的增量不一定是一，而是相对父级坐标系中增加了父级的lossyScale倍大小的值。
+
+
+
+localToWorldMatrix属性：转换矩阵
+
+返回从transform局部坐标系向世界坐标系转换的Matrix4x4矩阵
+
+
+
+parent属性：父物体Transform实例
+
+返回父物体的Transform实例
+
+
+
+worldToLocalMatrix属性
+
+返回从世界坐标向transform自身坐标系转换的Matrix4x4矩阵。
+
+
+
+### 实例方法
+
+DetachChildren方法：分离物体层级关系
+
+使GameObject对象的所有子物体和自身分离层级关系
+
+
+
+GetChild方法：获取GameObject对象子类
+
+index为子物体索引值
+
+参数index的值要小于transform的childCount值
+
+
+
+InverseTransformDirection方法：坐标系转换
+
+public Vector3 InverseTransformDirection(Vector3 direction);
+
+public Vector3 InverseTransformDirection(float x,float y,float z);
+
+参数direction为待转换的向量
+
+将参数direction 从世界坐标系转换到GameObject对象的局部坐标系。
+
+
+
+InversTransformPoint方法：点的相对坐标系向量
+
+public Vector3 InverseTransformPoint（Vector3 position）
+
+public Vector3 InverseTransformPoint（float x,float y,float z）
+
+返回参数position向量相对于GameObject对象局部坐标系的差向量，返回向量position和向量transform.position的差值。
+
+
+
+IsChildOf方法：是否为子物体
+
+public bool IsChildOf（Transform parent）；
+
+参数parent为父物体的Transform实例
+
+用于判断transform对应的Gameobject对象是否为参数parent的子物体。
+
+
+
+LookAt方法：物体朝向
+
+public void LookAt（Transform target）；
+
+public void LookAt（Vector3 worldPosition）；
+
+public void LookAt（Transform target，Vector3 worldUp）；
+
+public void LookAt（Vector3 worldPosition，Vector3 worldUp）；
+
+参数target为transform自身坐标系中z轴指向的目标，参数worldUp为transform组自身坐标系中y轴最大限度指向的方向。
+
+使GameObject对象自身坐标系中的z轴指向target，y轴方向最大限度地指向worldUp方向。worldUp指的是世界坐标系中的方向。此方法通常被用在Camera上，使得Camera的Transform看向目标target。
+
+
+
+
+
+Rotate方法：绕坐标轴旋转
+
+public void Rotate（Vector3 eulerAngles）；
+
+public void Rotate（Vector3 eulerAngles，Space relativeTo）；
+
+public void Rotate（float xAngle，float yAngle，float zAngle）；
+
+public void Rotate（float xAngle，float yAngle，float zAngle，Space relativeTo ）；
+
+参数eulerAngles为transform要旋转的欧拉角，参数relativeTo为transform旋转时参考的坐标系，默认为Space.Self
+
+使transform实例在相对参数relativeTo的坐标系中旋转欧拉角eulerAngles
+
+
+
+Rotate方法：绕某个向量旋转
+
+public void Rotate（Vector3 axis， float angle）；
+
+public void Rotate（Vector3 axis， float angle， Space relativeTo）；
+
+axis为旋转轴方向，参数angle为旋转角度，参数relativeTo为参考坐标系
+
+GameObject对象在relativeTo坐标系中绕轴向量axis旋转angle度。
+
+
+
+RotateAround方法：绕轴点旋转
+
+public void RotateAround（Vector3 axis，float angle）；
+
+public void RotateAround（Vector3 point，Vector3 axis， float angle）；
+
+point为参考点坐标，参数axis为旋转轴方向，参数algle为旋转角度。
+
+
+
+
+
+TransformDirection方法：坐标系转换
+
+public Vector3 TransformDirection（Vector3 direction）；
+
+public Vector3 TransformDirection（float x,float y,float z）;
+
+将向量direction从transform局部坐标系转换到世界坐标系。
+
+
+
+TransformPoint方法：点的世界坐标位置
+
+public Vector3 TransformPoint（Vector3 position）
+
+public Vector3 TransformDirection（float x,float y,float z）;
+
+返回GameObject对象局部坐标系中向量position在世界坐标系中的位置。
+
+
+
+Translate方法：相对坐标移动
+
+public void Translate（Vector3 translation）；
+
+public void Translate（Vector3 translation，Space relativeTo）；
+
+public void Translate（float x,float y,float z）；
+
+public void Translate（float x,float y,float z，Space relativeTo）；
+
+参数transform为移动向量，包括方向和大小，参数relativeTo为参考坐标系空间，默认为Space.Self.
+
+
+
+public void Translate(Vector3 translation, Transform relativeTo);
+
+public void Translate(float x,float y,float z, Transform relativeTo);
+
+参数transform为移动向量，包括方向和大小，参数relativeTo为参考坐标系空间，默认为Space.World.
+
+
+
+## Vector3 类
