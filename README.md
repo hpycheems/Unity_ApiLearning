@@ -951,3 +951,132 @@ public void Translate(float x,float y,float z, Transform relativeTo);
 
 
 ## Vector3 类
+
+### 实例属性
+
+normallized属性：单位化向量
+
+获取Vector3实例的单位向量，即返回向量的方向与原向量方向相同，而模长变为1.
+
+与Normalized（）有区别
+
+- normalized只是将向量A的单位向量赋值给向量C，而向量A自身未变
+- Normalize（）会将向量A进行单位处理，使得原向量A变成单位向量
+
+
+
+sqrMagnitude属性：模长平方 //向量的模不开根号
+
+返回Vector3实例模长的平方值
+
+### 实例方法
+
+Scale 方法：向量缩放
+
+public void Scale（Vector3 scale）
+
+其中参数scale为参考向量
+
+对Vector3实例按参考向量scale进行缩放
+
+
+
+### 静态方法
+
+Angle方法：求两个向量夹角
+
+public static float Angle(Vector3 from, Vector3 to)；
+
+返回向量from和to的夹角，单位为角度，返回值的范围为【0，180】，且当from和to至少有一个为Vector.zero时，方法返回值为90.
+
+
+
+ClampMagnitude方法：向量长度
+
+public static Vector3 ClampMagnitude(Vector3 vector, float maxLength);
+
+返回向量vector的一个同方向向量，其模长受maxLength的限制
+
+- 返回向量的方向和vector方向相同
+- 当maxLength大于vector的模长时，返回向量与vector相同
+- 当maxLength小于vector的模长时，返回向量的模场等于maxLength，但方向与vecotr相同。
+
+
+
+Cross方法：向量叉乘
+
+public static Vector3 Cross(Vector3 lhs, Vector3 rhs)；
+
+求两个向量的叉乘。
+
+
+
+Dot方法：向量点乘
+
+public static float Dot（Vector3 lhs，Vector3 rhs）；
+
+
+
+Lerp方法：向量插值
+
+public static Vector3 Lerp（Vector3 from， Vector3 to， float t）
+
+返回从from到to的线性插值向量。
+
+
+
+MoveTowards方法： 向量插值
+
+public static Vector3 MoveTowards（Vector3 current， Vector3 target， float maxDistanceDelta）；
+
+返回从参数current到参数target的插值向量。
+
+
+
+OrthoNormalize方法：两个坐标轴的正交化
+
+public static void OrthoNormalize（ref Vector3 normal， ref Vector3 tangent）；
+
+对向量normal进行单位化处理，并对向量tangent进行正交化处理。
+
+
+
+3个向量正交化
+
+public static void OrthoNormalize（ref Vector3 normal， ref Vector3 tangent，Vector3 binormal）；
+
+
+
+
+
+Project方法：投影向量
+
+public static Vector3 Project（Vector3 vector， Vector3 onNormal）；
+
+ 返回向量vector在向量onNormal上的投影向量。
+
+
+
+Reflect方法：反射向量
+
+public static Vector3 Reflect（Vector inDirection， Vector3 inNormal）；
+
+参数inDirection为入射向量，参数inNormal为镜面向量。
+
+
+
+Slerp方法：球形插值
+
+public static Vector3 Slerp（Vector3 from， Vector3 to， float t）；
+
+参数from为插值起点坐标，参数to为插值结束点坐标，参数t为插值系数。
+
+
+
+SmoothDamp方法：阻尼移动
+
+public static Vector3 SmoothDamp（Vector3 current，Vector3 target， ref Vector3 currentVelocity， float smoothTime）；
+
+public static Vector3 SmoothDamp（Vector3 current，Vector3 target， ref Vector3 currentVelocity， float smoothTime， float maxSpeed）；
+
+public static Vector3 SmoothDamp（Vector3 current，Vector3 target， ref Vector3 currentVelocity， float smoothTime， float maxSpeed， float deltaTime）；
