@@ -198,7 +198,7 @@ CreatePrimitive() 创建具有基元网格渲染器和适当碰撞体的游戏�
 
 ## HideFlags类
 
-HideFlags类为枚举类，用于控制Object对象的销毁方式及其在检视面板中道德可视性。
+HideFlags类为枚举类，用于控制Object对象的销毁方式及其在检视面板中的可视性。
 
 DontSave：保留对象到心场景
 
@@ -304,7 +304,7 @@ float MoveToWorlds（float current， float target， float maxDelta）
 
 参数current为当前值，参数target为目标值，参数maxDelta为最大约束值。
 
-返回一个从current到target之间的插值，返回值受maxDelta值得约束
+返回一个从current到target之间的插值，返回值受maxDelta值的约束
 
 
 
@@ -318,7 +318,7 @@ float PingPong（float t, float lenght）；
 
 
 
-Repeat方法：取模运算
+Repeat方法：重复
 
 float Repeat（float t，float length）；
 
@@ -326,7 +326,7 @@ float Repeat（float t，float length）；
 
 
 
-Round方法：浮点数得整型值
+Round方法：浮点数的整型值
 
 float Round（float f）
 
@@ -352,7 +352,7 @@ Object类是Unity中所有对象的基类
 
 GetInstancelD方法：Object对象ID
 
-public int GetInstaancelD();
+public int GetInstancelD();
 
 返回Object对象的实例化ID
 
